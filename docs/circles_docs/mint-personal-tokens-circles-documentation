@@ -1,0 +1,45 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk/circles-avatars/personal-human-avatars/mint-personal-tokens"
+title: "Mint personal tokens | Circles Documentation"
+description: "Human avatars accrue issuance continuously (capped at roughly 24 CRC per day) and expose helpers under a human avatar . The current claimable amount plus the accrual window is currently claimable ."
+---
+
+copy
+Copy
+chevron-down
+Mint personal tokens
+Human avatars accrue issuance continuously (capped at roughly
+24 CRC per day
+) and expose helpers under
+```
+avatar.personalToken
+```
+Copy
+```
+const mintable = await avatar.personalToken.getMintableAmount();
+console.log(`Mintable CRC: ${mintable.amount}`);
+if (mintable.amount > 0n) {
+const receipt = await avatar.personalToken.mint();
+console.log('Mint transaction hash:', receipt.hash);
+```
+```
+getMintableAmount()
+```
+returns the currently claimable amount plus the accrual window.
+```
+mint()
+```
+calls
+```
+hubV2.personalMint()
+```
+via the configured runner.
+Previous
+Inviting and accepting human avatars
+chevron-left
+Next
+Fetching profile of an human avatar
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

@@ -1,0 +1,829 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk-reference/circles-events-types"
+title: "Circles Events Types | Circles Documentation"
+description: " hashtag 1"
+---
+
+copy
+Copy
+chevron-down
+calendar-users
+Circles Events Types
+hashtag
+Base Event Configuration
+All events listed below extend this
+```
+CirclesBaseEvent
+```
+structure.
+```
+$event
+```
+```
+CirclesEventType
+```
+): Discriminator for the event kind.
+```
+blockNumber
+```
+```
+number
+```
+): The block number containing the log.
+```
+transactionIndex
+```
+```
+number
+```
+): The transaction index within the block.
+```
+logIndex
+```
+```
+number
+```
+): The log index within the transaction.
+```
+timestamp
+```
+```
+number
+```
+optional
+): Timestamp (when provided by the source).
+```
+transactionHash
+```
+```
+string
+```
+optional
+): The transaction hash.
+hashtag
+1. Identity & Registration
+Events related to the creation and management of Avatars, Groups, and Organizations.
+hashtag
+CrcV2_RegisterHuman
+Emitted when a new human avatar is registered.
+```
+$event
+```
+```
+'CrcV2_RegisterHuman'
+```
+```
+avatar
+```
+```
+string
+```
+): The address of the registered human.
+```
+inviter
+```
+```
+string
+```
+): The address of the user who invited them.
+hashtag
+CrcV2_RegisterGroup
+Emitted when a new group is registered.
+```
+$event
+```
+```
+'CrcV2_RegisterGroup'
+```
+group
+```
+string
+```
+): The address of the group.
+mint
+```
+string
+```
+): The address of the mint policy.
+```
+treasury
+```
+```
+string
+```
+): The treasury address.
+name
+```
+string
+```
+): The name of the group.
+```
+symbol
+```
+```
+string
+```
+): The token symbol.
+hashtag
+CrcV2_RegisterOrganization
+Emitted when an organization is registered.
+```
+$event
+```
+```
+'CrcV2_RegisterOrganization'
+```
+```
+organization
+```
+```
+string
+```
+): The address of the organization.
+name
+```
+string
+```
+): The name of the organization.
+hashtag
+CrcV2_InviteHuman
+Emitted when an invitation is sent to a potential user.
+```
+$event
+```
+```
+'CrcV2_InviteHuman'
+```
+```
+inviter
+```
+```
+string
+```
+): The address sending the invite.
+```
+invited
+```
+```
+string
+```
+): The address being invited.
+hashtag
+CrcV2_RegisterShortName
+Emitted when a short name (alias) is registered.
+```
+$event
+```
+```
+'CrcV2_RegisterShortName'
+```
+```
+avatar
+```
+```
+string
+```
+): The avatar address.
+```
+shortName
+```
+```
+bigint
+```
+): The numeric representation of the short name.
+nonce
+```
+bigint
+```
+): The nonce used for registration.
+hashtag
+CrcV2_Stopped
+Emitted when an avatar status is set to stopped.
+```
+$event
+```
+```
+'CrcV2_Stopped'
+```
+```
+avatar
+```
+```
+string
+```
+): The address of the avatar that has stopped.
+hashtag
+2. Token Operations (Standard & Batch)
+Events regarding the movement and minting of tokens (ERC-1155 compliant).
+hashtag
+CrcV2_PersonalMint
+Emitted when a user mints personal circles.
+```
+$event
+```
+```
+'CrcV2_PersonalMint'
+```
+human
+```
+string
+```
+): The address of the human minting.
+```
+amount
+```
+```
+bigint
+```
+): The amount minted.
+```
+startPeriod
+```
+```
+bigint
+```
+): The start of the minting period.
+```
+endPeriod
+```
+```
+bigint
+```
+): The end of the minting period.
+hashtag
+CrcV2_GroupMint
+Emitted when tokens are minted via a Group context.
+```
+$event
+```
+```
+'CrcV2_GroupMint'
+```
+```
+sender
+```
+```
+string
+```
+): The address initiating the mint.
+```
+receiver
+```
+```
+string
+```
+): The address receiving the tokens.
+group
+```
+string
+```
+): The group address.
+```
+collateral
+```
+```
+bigint
+```
+): The collateral amount involved.
+```
+amount
+```
+```
+bigint
+```
+```
+batchIndex
+```
+```
+number
+```
+): The index within the batch operation.
+hashtag
+CrcV2_TransferSingle
+Emitted when a single token ID is transferred.
+```
+$event
+```
+```
+'CrcV2_TransferSingle'
+```
+```
+operator
+```
+```
+string
+```
+): The address performing the transfer.
+from
+```
+string
+```
+): The source address.
+```
+string
+```
+): The destination address.
+```
+bigint
+```
+): The token ID.
+value
+```
+bigint
+```
+): The amount transferred.
+hashtag
+CrcV2_TransferBatch
+Emitted when multiple token IDs are transferred simultaneously.
+```
+$event
+```
+```
+'CrcV2_TransferBatch'
+```
+```
+batchIndex
+```
+```
+number
+```
+```
+operator
+```
+```
+string
+```
+from
+```
+string
+```
+```
+string
+```
+```
+bigint
+```
+value
+```
+bigint
+```
+hashtag
+CrcV2_ApprovalForAll
+Emitted when an operator is approved to manage all assets.
+```
+$event
+```
+```
+'CrcV2_ApprovalForAll'
+```
+```
+account
+```
+```
+string
+```
+): The account owner.
+```
+operator
+```
+```
+string
+```
+): The address being approved.
+```
+approved
+```
+```
+boolean
+```
+): Status of approval (
+true
+false
+hashtag
+CrcV2_TransferSummary
+A high-level summary event for transfers.
+```
+$event
+```
+```
+'CrcV2_TransferSummary'
+```
+from
+```
+string
+```
+```
+string
+```
+```
+amount
+```
+```
+bigint
+```
+): The aggregated amount.
+```
+events
+```
+```
+string
+```
+): Encoded reference to related sub-events.
+hashtag
+3. ERC20 Wrappers
+Events related to the wrapping of Circles tokens into standard ERC20 format.
+hashtag
+CrcV2_ERC20WrapperDeployed
+Emitted when a new ERC20 wrapper contract is deployed.
+```
+$event
+```
+```
+'CrcV2_ERC20WrapperDeployed'
+```
+```
+avatar
+```
+```
+string
+```
+): The avatar associated with the wrapper.
+```
+erc20Wrapper
+```
+```
+string
+```
+): The address of the deployed wrapper contract.
+```
+circlesType
+```
+```
+number
+```
+): The type identifier for the circles.
+hashtag
+CrcV2_Erc20WrapperTransfer
+Emitted when tokens are transferred via the wrapper.
+```
+$event
+```
+```
+'CrcV2_Erc20WrapperTransfer'
+```
+```
+tokenAddress
+```
+```
+string
+```
+): The address of the token.
+from
+```
+string
+```
+```
+string
+```
+value
+```
+bigint
+```
+): The value transferred.
+hashtag
+4. Inflation & Demurrage
+Events tracking value conversions between inflationary and demurraged states.
+hashtag
+CrcV2_DepositInflationary
+Emitted when inflationary tokens are deposited.
+```
+$event
+```
+```
+'CrcV2_DepositInflationary'
+```
+```
+account
+```
+```
+string
+```
+): The user account.
+```
+amount
+```
+```
+bigint
+```
+): The raw amount deposited.
+```
+demurragedAmount
+```
+```
+bigint
+```
+): The equivalent demurraged value.
+hashtag
+CrcV2_WithdrawInflationary
+Emitted when inflationary tokens are withdrawn.
+```
+$event
+```
+```
+'CrcV2_WithdrawInflationary'
+```
+```
+account
+```
+```
+string
+```
+```
+amount
+```
+```
+bigint
+```
+): The raw amount withdrawn.
+```
+```
+```
+bigint
+```
+hashtag
+CrcV2_DepositDemurraged
+Emitted when demurraged tokens are deposited.
+```
+$event
+```
+```
+'CrcV2_DepositDemurraged'
+```
+```
+account
+```
+```
+string
+```
+```
+amount
+```
+```
+bigint
+```
+): The demurraged amount deposited.
+```
+inflationaryAmount
+```
+```
+bigint
+```
+): The equivalent inflationary value.
+hashtag
+CrcV2_WithdrawDemurraged
+Emitted when demurraged tokens are withdrawn.
+```
+$event
+```
+```
+'CrcV2_WithdrawDemurraged'
+```
+```
+account
+```
+```
+string
+```
+```
+amount
+```
+```
+bigint
+```
+): The demurraged amount withdrawn.
+```
+```
+```
+bigint
+```
+hashtag
+CrcV2_DiscountCost
+Emitted to record the cost associated with discounting.
+```
+$event
+```
+```
+'CrcV2_DiscountCost'
+```
+```
+account
+```
+```
+string
+```
+```
+bigint
+```
+cost
+```
+bigint
+```
+): The calculated cost.
+hashtag
+5. Trust, Flows & Metadata
+Events regarding social graphs, data streams, and IPFS metadata.
+hashtag
+CrcV2_Trust
+Emitted when a trust relationship is modified.
+```
+$event
+```
+```
+'CrcV2_Trust'
+```
+```
+truster
+```
+```
+string
+```
+): The entity giving trust.
+```
+trustee
+```
+```
+string
+```
+): The entity receiving trust.
+```
+expiryTime
+```
+```
+bigint
+```
+): Timestamp when the trust expires.
+hashtag
+CrcV2_StreamCompleted
+Emitted when a token stream is finalized.
+```
+$event
+```
+```
+'CrcV2_StreamCompleted'
+```
+```
+operator
+```
+```
+string
+```
+): The address finalizing the stream.
+from
+```
+string
+```
+```
+string
+```
+```
+bigint
+```
+```
+amount
+```
+```
+bigint
+```
+): The total amount streamed.
+```
+batchIndex
+```
+```
+number
+```
+optional
+): The index if part of a batch.
+hashtag
+CrcV2_FlowEdgesScopeSingleStarted
+Emitted when a single flow edge scope begins.
+```
+$event
+```
+```
+'CrcV2_FlowEdgesScopeSingleStarted'
+```
+```
+flowEdgeId
+```
+```
+bigint
+```
+): The ID of the flow edge.
+```
+streamId
+```
+```
+number
+```
+): The ID of the stream.
+hashtag
+CrcV2_FlowEdgesScopeLastEnded
+Emitted when the last flow edge scope ends.
+```
+$event
+```
+```
+'CrcV2_FlowEdgesScopeLastEnded'
+```
+(No specific payload properties defined beyond base event)
+hashtag
+CrcV2_UpdateMetadataDigest
+Emitted when an avatar's metadata hash is updated.
+```
+$event
+```
+```
+'CrcV2_UpdateMetadataDigest'
+```
+```
+avatar
+```
+```
+string
+```
+```
+metadataDigest
+```
+```
+Uint8Array
+```
+): The new metadata hash.
+hashtag
+CrcV2_CidV0
+Emitted regarding IPFS Content ID (v0) updates.
+```
+$event
+```
+```
+'CrcV2_CidV0'
+```
+```
+avatar
+```
+```
+string
+```
+```
+cidV0Digest
+```
+```
+Uint8Array
+```
+): The IPFS CID v0 digest.
+hashtag
+CrcV2_URI
+Emitted when the URI for a token ID changes.
+```
+$event
+```
+```
+'CrcV2_URI'
+```
+value
+```
+string
+```
+): The URI string.
+```
+bigint
+```
+hashtag
+6. System & Vaults
+hashtag
+CrcV2_CreateVault
+Emitted when a new vault is created.
+```
+$event
+```
+```
+'CrcV2_CreateVault'
+```
+vault
+```
+string
+```
+): The address of the new vault.
+token
+```
+string
+```
+): The associated token address.
+Previous
+SDK Methods
+chevron-left
+Next
+Glossary
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

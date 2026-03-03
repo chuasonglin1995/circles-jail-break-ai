@@ -1,0 +1,48 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk/circles-avatars/personal-human-avatars/inviting-and-accepting-human-avatars"
+title: "Inviting and accepting human avatars | Circles Documentation"
+description: "Inviting and accepting human avatars allows you to join the network as a human with a token ERC 1155 standard . You would have a profile and would require to be invited to join and start minting personal CRC tokens ."
+---
+
+copy
+Copy
+chevron-down
+Inviting and accepting human avatars
+Circles allows you to join the network as a human with a token ERC 1155 standard. You would have a profile and would require to be invited to join the network and start minting personal CRC token
+hashtag
+Inviting a human to Circles
+Copy
+```
+// Inviter side: send invite (escrows 100 CRC + trusts the invitee)
+const inviter = await sdk.getAvatar('0xInviterAvatar'); // HumanAvatar
+await inviter.invite.send('0xInviteeEOAAddress');
+```
+Now, your invitee can accept the invitation / register by:
+Copy
+```
+//Invitee side: accept Invitation
+const inviteeAvatar = await inviteeSdk.register.asHuman('0xInviterAddress', {
+name: 'Alice',
+description: 'New Circles member',
+});
+// (Optional) If multiple inviters, redeem a specific one
+await inviteeAvatar.invite.redeem('0xSpecificInviter');
+```
+hashtag
+Get an existing avatar
+If you have the address of an existing avatar, you can get the avatar details by:
+Copy
+```
+const profile = await inviteeAvatar.profile.get();
+if (profile) {
+console.log(profile.name, profile.description);
+```
+Previous
+Personal / Human Avatars
+chevron-left
+Next
+Mint personal tokens
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

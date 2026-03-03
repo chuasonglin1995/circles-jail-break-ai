@@ -1,0 +1,800 @@
+---
+url: "https://docs.aboutcircles.com/api-reference"
+title: "Circles API | API Reference | Circles Documentation"
+description: ""
+---
+
+copy
+Copy
+chevron-down
+Circles API
+hashtag
+Get v2 Circles total balance of an address
+post
+https://rpc.aboutcircles.com
+/circlesV2_getTotalBalance
+Body
+application/json
+object
+Optional
+Show properties
+plus
+and
+object
+Optional
+plus
+Responses
+chevron-right
+200
+Balance string (decimal or integer depending on asTimeCircles).
+object
+Optional
+plus
+and
+object
+Optional
+plus
+post
+HTTP
+HTTP
+cURL
+JavaScript
+Python
+Copy
+```
+POST /circlesV2_getTotalBalance HTTP/1.1
+Host: rpc.aboutcircles.com/
+Content-Type: application/json
+Accept: */*
+Content-Length: 122
+"jsonrpc": "2.0",
+"id": 1,
+"method": "circlesV2_getTotalBalance",
+"params": [
+"0xcadd4ea3bcc361fc4af2387937d7417be8d7dfc2",
+true
+```
+Test it
+200
+Copy
+```
+"id": 1,
+"result": "text"
+```
+hashtag
+Get all Circles v2 token balances held by an address
+post
+/circles_getTokenBalances
+Body
+object
+Optional
+plus
+and
+object
+Optional
+plus
+Responses
+200
+Array of token balances.
+object
+Optional
+plus
+and
+object
+Optional
+plus
+post
+HTTP
+HTTP
+cURL
+JavaScript
+Python
+Copy
+```
+POST /circles_getTokenBalances HTTP/1.1
+Content-Length: 116
+"id": 1,
+"method": "circles_getTokenBalances",
+"0xd68193591d47740e51dfbc410da607a351b56586"
+```
+Test it
+200
+Copy
+```
+"id": 1,
+"result": [
+"TokenAddress": "text",
+"TokenId": "text",
+"TokenOwner": "text",
+"TokenType": "CrcV2_RegisterHuman",
+"Version": 2,
+"AttoCircles": "99999999999999999999999999999999999",
+"Circles": 1,
+"StaticAttoCircles": "99999999999999999999999999999999999",
+"StaticCircles": 1,
+"AttoCrc": "99999999999999999999999999999999999",
+"Crc": 1,
+"IsErc20": true,
+"IsErc1155": true,
+"IsWrapped": true,
+"IsInflationary": true,
+"IsGroup": true
+```
+hashtag
+Get common trust between two addresses (v2)
+post
+/circles_getCommonTrust
+Body
+object
+Optional
+plus
+and
+object
+Optional
+plus
+Responses
+200
+Array of common trusted addresses.
+object
+Optional
+plus
+and
+object
+Optional
+plus
+post
+HTTP
+HTTP
+cURL
+JavaScript
+Python
+Copy
+```
+POST /circles_getCommonTrust HTTP/1.1
+Content-Length: 161
+"id": 1,
+"method": "circles_getCommonTrust",
+"0xde374ece6fa50e781e81aac78e811b33d16912c7",
+"0xae3a29a9ff24d0e936a5579bae5c4179c4dff565",
+```
+Test it
+200
+Copy
+```
+"id": 1,
+"text"
+```
+hashtag
+Path-finding with target flow (Circles v2)
+post
+/circlesV2_findPath
+Body
+object
+Optional
+plus
+and
+object
+Optional
+plus
+Responses
+200
+Path with flow allocations.
+object
+Optional
+plus
+and
+object
+Optional
+plus
+post
+HTTP
+HTTP
+cURL
+JavaScript
+Python
+Copy
+```
+POST /circlesV2_findPath HTTP/1.1
+Content-Length: 224
+"id": 0,
+"method": "circlesV2_findPath",
+"Source": "0x749c930256b47049cb65adcd7c25e72d5de44b3b",
+"Sink": "0xde374ece6fa50e781e81aac78e811b33d16912c7",
+"TargetFlow": "99999999999999999999999999999999999"
+```
+Test it
+200
+Copy
+```
+"id": 1,
+"result": {
+"MaxFlow": "99999999999999999999999999999999999",
+"Transfers": [
+"From": "text",
+"To": "text",
+"Value": "99999999999999999999999999999999999"
+```
+hashtag
+SQL-like indexed query
+post
+/circles_query
+Perform a SQL-like query on the indexed data.
+Useful query templates (YAML)
+hashtag
+Recent v2 avatar registrations
+Copy
+```
+jsonrpc: "2.0"
+id: 1
+method: "circles_query"
+params:
+Namespace: "V_CrcV2"
+Table: "Avatars"
+Columns:
+- "blockNumber"
+- "timestamp"
+- "transactionHash"
+- "type"
+- "avatar"
+- "tokenId"
+- "name"
+- "cidV0Digest"
+Filter:
+Order:
+Column: "blockNumber"
+SortOrder: "DESC"
+Column: "transactionIndex"
+Column: "logIndex"
+Limit: 25
+```
+hashtag
+Incoming + outgoing trust relations for an address
+Copy
+```
+id: 1
+params:
+Table: "TrustRelations"
+Columns:
+- "truster"
+- "trustee"
+- "expiryTime"
+Filter:
+Type: "Conjunction"
+ConjunctionType: "Or"
+Predicates:
+Type: "FilterPredicate"
+FilterType: "Equals"
+Column: "truster"
+Value: "0xae3a29a9ff24d0e936a5579bae5c4179c4dff565"
+Column: "trustee"
+Order:
+```
+hashtag
+Balances for one account, ordered by demurraged balance
+Copy
+```
+id: 1
+params:
+Table: "BalancesByAccountAndToken"
+Columns:
+- "account"
+- "tokenAddress"
+- "lastActivity"
+- "totalBalance"
+- "demurragedTotalBalance"
+Filter:
+Column: "account"
+Value: "0xde374ece6fa50e781e81aac78e811b33d16912c7"
+Order:
+Column: "demurragedTotalBalance"
+Limit: 50
+```
+hashtag
+Group overview with membership counts
+Copy
+```
+id: 1
+params:
+Table: "Groups"
+Columns:
+- "group"
+- "name"
+- "symbol"
+- "memberCount"
+- "owner"
+- "mintPolicy"
+- "treasury"
+- "erc20WrapperDemurraged"
+- "erc20WrapperStatic"
+Filter:
+Order:
+Column: "memberCount"
+Limit: 20
+```
+hashtag
+Members of a group (v2)
+Copy
+```
+id: 1
+params:
+Table: "GroupMemberships"
+Columns:
+- "group"
+- "member"
+- "memberType"
+Filter:
+Column: "group"
+Order:
+Column: "timestamp"
+```
+hashtag
+Recent transfers involving an address
+Copy
+```
+id: 1
+params:
+Table: "Transfers"
+Columns:
+- "from"
+- "to"
+- "id"
+- "value"
+- "type"
+Filter:
+Column: "from"
+Column: "to"
+Order:
+Limit: 100
+```
+hashtag
+Total supply for a specific token
+Copy
+```
+id: 1
+params:
+Table: "TotalSupply"
+Columns:
+- "totalSupply"
+Filter:
+Column: "tokenAddress"
+Value: "0x42cedde51198d1773590311e2a340dc06b24cb37"
+Order:
+```
+hashtag
+Holders of a group token with ownership fraction
+Copy
+```
+id: 1
+params:
+Table: "GroupTokenHoldersBalance"
+Columns:
+- "group"
+- "holder"
+- "fractionOwnership"
+Filter:
+Order:
+Limit: 50
+```
+hashtag
+Group token supply (demurraged)
+Copy
+```
+id: 1
+params:
+Table: "GroupTokenSupply"
+Columns:
+- "group"
+- "demurragedTotalSupply"
+Filter:
+Order:
+```
+hashtag
+Group collateral locked by token
+Copy
+```
+id: 1
+params:
+Table: "GroupCollateralByToken"
+Columns:
+- "group"
+- "id"
+- "amountLocked"
+- "demurragedAmountLocked"
+- "fractionLocked"
+Filter:
+Order:
+Column: "amountLocked"
+```
+hashtag
+Group vault balances by token
+Copy
+```
+id: 1
+params:
+Table: "GroupVaultBalancesByToken"
+Columns:
+- "vault"
+- "id"
+- "balance"
+Filter:
+Column: "vault"
+Order:
+Column: "balance"
+```
+hashtag
+Daily group member counts
+Copy
+```
+id: 1
+params:
+Table: "GroupMembersCount_1d"
+Columns:
+- "group"
+- "value"
+Filter:
+Order:
+Limit: 30
+```
+hashtag
+Daily wrap/unwrap activity for a group token
+Copy
+```
+id: 1
+params:
+Table: "GroupWrapUnWrap_1d"
+Columns:
+- "group"
+- "tokenType"
+- "wrapAmount"
+- "unwrapAmount"
+- "wrapSupply"
+Filter:
+Order:
+Limit: 30
+```
+hashtag
+Daily mint/redeem activity for a group token
+Copy
+```
+id: 1
+params:
+Table: "GroupMintRedeem_1d"
+Columns:
+- "group"
+- "minted"
+- "burned"
+- "supply"
+- "demurragedMinted"
+- "demurragedBurned"
+- "demurragedSupply"
+Filter:
+Order:
+Limit: 30
+```
+hashtag
+Daily affiliate members count
+Copy
+```
+id: 1
+params:
+Table: "AffiliateMembersCount_1d"
+Columns:
+- "group"
+- "value"
+Filter:
+Order:
+Limit: 30
+```
+hashtag
+Daily Balancer vault balance for an ERC20 wrapper
+Copy
+```
+id: 1
+params:
+Table: "Erc20BalancerVaultBalance_1d"
+Columns:
+- "value"
+Filter:
+Order:
+Limit: 30
+```
+hashtag
+LBP circles backing deployments
+Copy
+```
+id: 1
+params:
+Namespace: "CrcV2"
+Table: "CirclesBackingDeployed"
+Columns:
+- "emitter"
+- "backer"
+- "circlesBackingInstance"
+Filter:
+Column: "backer"
+Value: "0xeced91232c609a42f6016860e8223b8aecaa7bd0"
+Order:
+Limit: 100
+```
+hashtag
+Group collateral delta by token
+Copy
+```
+id: 1
+params:
+Table: "GroupCollateralDiffByToken"
+Columns:
+- "group"
+- "id"
+Filter:
+Order:
+Limit: 100
+```
+hashtag
+Hourly group member counts
+Copy
+```
+id: 1
+params:
+Table: "GroupMembersCount_1h"
+Columns:
+- "group"
+- "value"
+Filter:
+Order:
+Limit: 72
+```
+hashtag
+Hourly wrap/unwrap activity for a group token
+Copy
+```
+id: 1
+params:
+Table: "GroupWrapUnWrap_1h"
+Columns:
+- "group"
+Filter:
+Order:
+Limit: 72
+```
+hashtag
+Hourly mint/redeem activity for a group token
+Copy
+```
+id: 1
+params:
+Table: "GroupMintRedeem_1h"
+Columns:
+- "group"
+- "minted"
+- "burned"
+- "supply"
+Filter:
+Order:
+Limit: 72
+```
+hashtag
+Hourly affiliate members count
+Copy
+```
+id: 1
+params:
+Table: "AffiliateMembersCount_1h"
+Columns:
+- "group"
+- "value"
+Filter:
+Order:
+Limit: 72
+```
+hashtag
+Hourly Balancer vault balance for an ERC20 wrapper
+Copy
+```
+id: 1
+params:
+Table: "Erc20BalancerVaultBalance_1h"
+Columns:
+- "value"
+Filter:
+Order:
+Limit: 72
+```
+Body
+object
+Optional
+plus
+and
+object
+Optional
+plus
+Responses
+200
+Tabular result set.
+object
+Optional
+plus
+and
+object
+Optional
+plus
+post
+HTTP
+HTTP
+cURL
+JavaScript
+Python
+Copy
+```
+POST /circles_query HTTP/1.1
+Content-Length: 372
+"id": 1,
+"method": "circles_query",
+"Namespace": "V_CrcV2",
+"Table": "Avatars",
+"Columns": [
+"blockNumber",
+"timestamp",
+"transactionHash",
+"type",
+"avatar",
+"tokenId",
+"name",
+"cidV0Digest"
+"Filter": [],
+"Order": [
+"Column": "blockNumber",
+"SortOrder": "DESC"
+"Column": "transactionIndex",
+"Column": "logIndex",
+"Limit": 25
+```
+Test it
+200
+Copy
+```
+"id": 1,
+"text"
+"rows": [
+"text"
+```
+hashtag
+Stream / log event query
+post
+/circles_events
+Body
+object
+Optional
+plus
+and
+object
+Optional
+plus
+Responses
+200
+Array of event objects.
+object
+Optional
+plus
+and
+object
+Optional
+plus
+post
+HTTP
+HTTP
+cURL
+JavaScript
+Python
+Copy
+```
+POST /circles_events HTTP/1.1
+Content-Length: 147
+"id": 1,
+"method": "circles_events",
+38000000,
+null,
+"CrcV2_Trust"
+null,
+false
+```
+Test it
+200
+Copy
+```
+"id": 1,
+"Event": "text",
+"Values": {
+"ANY_ADDITIONAL_PROPERTY": "anything"
+```
+hashtag
+System health probe
+post
+/circles_health
+Body
+object
+Optional
+plus
+and
+object
+Optional
+plus
+Responses
+200
+Health status.
+object
+Optional
+plus
+and
+object
+Optional
+plus
+post
+HTTP
+HTTP
+cURL
+JavaScript
+Python
+Copy
+```
+POST /circles_health HTTP/1.1
+Content-Length: 62
+"id": 1,
+"method": "circles_health",
+"params": []
+```
+Test it
+200
+Copy
+```
+"id": 1,
+```
+hashtag
+List namespaces, tables, and columns
+post
+/circles_tables
+Body
+object
+Optional
+plus
+and
+object
+Optional
+plus
+Responses
+200
+Namespace/table catalogue.
+object
+Optional
+plus
+and
+object
+Optional
+plus
+post
+HTTP
+HTTP
+cURL
+JavaScript
+Python
+Copy
+```
+POST /circles_tables HTTP/1.1
+"id": 0,
+"method": "circles_tables",
+```
+Test it
+200
+Copy
+```
+"id": 1,
+"Namespace": "text",
+"Tables": [
+"Table": "text",
+"Topic": "text",
+"Column": "text",
+"Type": "text"
+```
+Last updated
+3 months ago
+Was this helpful?

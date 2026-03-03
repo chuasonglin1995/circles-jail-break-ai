@@ -1,0 +1,71 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk/circles-avatars/organization-avatars/managing-trust-connections-via-org-avatar-account"
+title: "Managing trust connections via Org avatar account | Circles Documentation"
+description: "Organizations use the same trust surface as humans . Trust determines which avatars’ Circles they accept and who can route transfers through them ."
+---
+
+copy
+Copy
+chevron-down
+Managing trust connections via Org avatar account
+Organizations use the same trust surface as humans. Trust determines which avatars’ Circles they accept and who can route transfers through them.
+hashtag
+Trust Another Avatar
+Copy
+```
+const orgAvatar = await sdk.getAvatar('0xOrgAvatar');
+const receipt = await orgAvatar.trust.add('0xCollaborator');
+console.log('Trust added:', receipt.hash);
+```
+Default expiry is max uint96 (indefinite). Optionally pass an expiry timestamp (seconds since epoch).
+Safe runners can batch:
+```
+orgAvatar.trust.add(['0xA', '0xB'], expiry)
+```
+hashtag
+Remove Trust
+Copy
+```
+const revoke = await orgAvatar.trust.remove('0xCollaborator');
+console.log('Trust removed:', revoke.hash);
+```
+hashtag
+Inspect Trust Direction
+Copy
+```
+const trusts = await orgAvatar.trust.isTrusting('0xPeer'); // org -> peer
+const trustedBy = await orgAvatar.trust.isTrustedBy('0xPeer'); // peer -> org
+console.log({ trusts, trustedBy });
+```
+hashtag
+List All Trust Relations
+Copy
+```
+const relations = await orgAvatar.trust.getAll();
+relations.forEach((rel) => {
+console.log(`${rel.subjectAvatar} ${rel.relation} ${rel.objectAvatar}`);
+});
+```
+```
+relation
+```
+```
+trusts
+```
+```
+trustedBy
+```
+, or
+```
+mutuallyTrusts
+```
+. Use this to identify who the org accepts and who accepts the org for routing and payments.
+Previous
+Creation of Organizations
+chevron-left
+Next
+Wrapping and Unwrapping
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

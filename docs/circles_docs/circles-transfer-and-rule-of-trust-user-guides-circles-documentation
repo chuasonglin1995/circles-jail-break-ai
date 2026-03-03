@@ -1,0 +1,84 @@
+---
+url: "https://docs.aboutcircles.com/user-guides/circles-features/circles-transfer-and-rule-of-trust"
+title: "Circles Transfer and Rule of Trust | User Guides | Circles Documentation"
+description: "Your total balance is not the same as what’s routable to a specific recipient at this moment . The most important rule is the Rule of Trust: If Alice trusts Bob, then any person can swap it 1:1 for Alice (whatever Alice holds)"
+---
+
+copy
+Copy
+chevron-down
+Circles Transfer and Rule of Trust
+This guide will help you understand balances, send limits, and how the Pathfinder finds a route
+When you open the Circles tab in the
+Gnosis
+arrow-up-right
+app, you’ll typically see:
+Total Circles balance (e.g., 8,602 CRC)
+A Send flow that shows a Send limit (e.g., only 6,800 CRC available to send to a specific person)
+That difference is expected. Your total balance is not the same as what’s routable to a specific recipient at this moment.
+hashtag
+Everyone creates their own Circles
+In Circles, every person mints their own unique CRC (their “personal currency”).
+So your wallet’s total “CRC balance” is usually a mix of CRC issued by many different people, not only the CRC you personally minted.
+For example, your total might include:
+some Gnosis Group Circles (gCRC)
+your own minted CRC
+and other people’s CRC
+hashtag
+The Rule of Trust
+The most important rule is the Rule of Trust:
+If Alice trusts Bob, then
+anyone
+holding Bob’s CRC can swap it 1:1 for
+any CRC currently held by Alice
+(whatever Alice holds at that moment).
+hashtag
+What does this imply?
+Trust is not just “permission to receive.”
+It creates swap capacity that others can use to move value across the network.
+Transfers can become transitive (they can hop through trust relationships).
+hashtag
+Why you can’t always send your full balance to someone?
+Your ability to send CRC to a specific recipient depends on two things together:
+Trust relationships across the network (who trusts whom)
+Current distribution of CRC holdings (who is holding which people’s CRC)
+So even if you have 8,602 CRC total, the network might only be able to route 6,800 CRC from you to that particular recipient
+right now
+circle-info
+Total balance = what you have
+Send limit = what the network can currently route to that person through trust + available intermediate balances
+hashtag
+How Circles finds the sendable amount (Max Flow routing)?
+Under the hood, Circles models the routing problem as a maximum flow problem (a well-known graph algorithm problem).
+The network is a graph:
+nodes = people/accounts
+edges = trust relationships + swap possibilities created by who holds whose CRC
+The solver searches through many possible combinations to compute:
+the maximum amount that can be delivered to a chosen recipient
+hashtag
+Checking routes and limits with Pathfinder Pro App (Advanced Users Only)
+If you want to see the “power tool” version of the routing calculation, use Pathfinder Pro:
+Navigate
+pathfinder.app.aboutcircles.com
+Paste your address in the sender field
+Paste the recipient’s address in the recipient field
+Set Amount to a high number (to probe the maximum)
+Click Find a path
+Pathfinder returns the maximum sendable amount — this should match what the Gnosis app shows as the send limit
+hashtag
+Practical tips
+Your total balance being higher than your send limit is normal.
+Send limits vary by recipient. You may be able to send more to one person than another.
+Send limits change over time as:
+trust links change
+people’s holdings change
+routing opportunities appear/disappear
+Previous
+Migrate Circles v1 account to v2
+chevron-left
+Next
+Daily Burn (Demurrage)
+chevron-right
+Last updated
+29 days ago
+Was this helpful?

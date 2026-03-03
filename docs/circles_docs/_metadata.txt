@@ -1,0 +1,7 @@
+Crawl Results
+=============
+Seed URLs: https://docs.aboutcircles.com/api-reference
+Pages crawled: 50
+Started: 2026-03-03T22:35:37.639918
+Finished: 2026-03-03T23:31:54.607385
+Output directory: /Users/chuasonglin/work/docs-crawler/outputs/circles_docs

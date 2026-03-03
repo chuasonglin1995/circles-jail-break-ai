@@ -1,0 +1,85 @@
+---
+url: "https://docs.aboutcircles.com/querying-circles-profiles-and-data/query-circles-profiles"
+title: "Query Circles profiles | Circles Documentation"
+description: "Users can create new user profiles using the Profiles Nethermind plugin . You can: create new profiles using parameters such as:NameNameNameCID (Content Identifier) Create a Profile ( POST request)Copy ’s ‘‘’"
+---
+
+copy
+Copy
+chevron-down
+head-side-gear
+Query Circles profiles
+hashtag
+Retrieve user profile data using the Profiles Nethermind plugin. You can:
+Create new user profiles
+Search existing profiles using parameters such as:
+Name
+CID (Content Identifier)
+Description
+Wallet Address
+hashtag
+1. Create a Profile (POST request)
+Copy
+```
+curl -X POST "https://rpc.aboutcircles.com/profiles/pin" \
+-H "Content-Type: application/json" \
+-d '{
+"name": "John Doe",
+"description": "A blockchain developer",
+"previewImageUrl": "https://example.com/preview.jpg",
+"imageUrl": "https://example.com/image.jpg",
+"extensions": {
+"twitter": "@johndoe",
+"github": "johndoe"
+```
+hashtag
+2. Get a Profile by CID (GET request)
+Copy
+```
+curl -X GET "https://rpc.aboutcircles.com/profiles/get?cid=Qm12345abcdef"
+```
+hashtag
+3. Get Multiple Profiles by CIDs (GET request)
+Copy
+```
+curl -X GET "https://rpc.aboutcircles.com/profiles/getBatch?cids=Qm12345abcdef,Qm678bbdj
+```
+hashtag
+4. Search Profiles by Name (GET request)
+Copy
+```
+curl -X GET "https://rpc.aboutcircles.com/profiles/search?name=John"
+```
+hashtag
+5. Search Profiles by Description (GET request)
+Copy
+```
+curl -X GET "https://rpc.aboutcircles.com/profiles/search?description=Circles"
+```
+hashtag
+6. Search Profiles by Address (GET request)
+Copy
+```
+curl -X GET "https://rpc.aboutcircles.com/profiles/search?address=0x1234567890abcdef"
+```
+hashtag
+7. Search Profiles by CID (GET request)
+Copy
+```
+curl -X GET "https://rpc.aboutcircles.com/profiles/search?CID=Qm12345abcdef"
+```
+hashtag
+8. Search Profiles with Multiple Criteria (GET request)
+Copy
+```
+curl -X GET "https://rpc.aboutcircles.com/profiles/search?name=John&description=blockchain&address=0x1234567890abcdef&CID=Qm12345abcdef"
+```
+Previous
+Utilising CirclesQuery Class
+chevron-left
+Next
+Circles SDK interface
+chevron-right
+Last updated
+1 year ago
+Was this helpful?

@@ -1,0 +1,65 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk/the-circles-protocol"
+title: "The Circles Stack | Circles Documentation"
+description: "Circles SDK provides comprehensive guide to build using Circles SDK, SDK references, contract addresses, and code examples to help you integrate Circles into your applications and build upon our ecosystem . Based on your need, you can pick to develop any avatar post initialization of SDK ."
+---
+
+copy
+Copy
+chevron-down
+layer-group
+The Circles Stack
+Developers Hub for building with Circles.
+Our developer documentation portal provides comprehensive guide to build using Circles SDK, SDK references, contract addresses, and code examples to help you integrate Circles into your applications and build upon our ecosystem.
+hashtag
+Circles SDK
+If you want to develop a server or client application that utilizes Circles, and allow you to utilize trust connection and personal/group currencies, then Circles SDK would be your entry point. Based on your need, you can pick to develop any avatar post initialization of SDK.
+Circles SDK package on npm
+arrow-up-right
+Circles SDK source code
+hashtag
+Circles Infrastructure
+Pathfinder
+Finds liquid paths between two accounts in the trust network. These paths are used as input for the contract's transfer methods.
+Learn more about Pathfinder
+Circles Nethermind Plug-in
+Provides access to the Gnosis Chain and indexes Circles events for a seamless experience.
+Learn more about Circles Nethermind Plug-in
+hashtag
+Circles Hub Contracts
+Circles protocol relies on the hub contract that you can utilize directly within applications. These deployed contracts exist on Gnosis Chain and are required by the SDK for configuration and initialization.
+Here are the deployed addresses for V1 hub and V2 hub that you should consider for configuration or building tools on Circles protocol:
+Contract Name
+Deployed addresses
+Hub contract
+0xc12C1E50ABB450d6205Ea2C3Fa861b3B834d13e8
+Name registry
+0xA27566fD89162cC3D40Cb59c87AAaA49B85F3474
+Migration contract
+0xD44B8dcFBaDfC78EA64c55B705BFc68199B56376
+Base mint policy
+0xcCa27c26CF7BAC2a9928f42201d48220F0e3a549
+If you want to skip directly to setting up Circles SDK in your application, you can jump to the SDK Configuration Guide which covers all the setup parameters.
+Circles V2 contract source code
+Review the codebase for Circles contracts V2 which follows ERC1155 standard, and manages personal, group and organisation avatars.
+https://github.com/aboutcircles/circles-contracts-v2
+Circles V2 Reference docs
+https://aboutcircles.github.io/circles-contracts-v2/
+Circles Profile Service
+This service indexes and persists profile data from/to IPFS.
+https://github.com/aboutcircles/profile-service
+hashtag
+Join the Technical Community
+To collaborate with fellow developers, ask questions, and share your insights, join our technical community channels on Discord, GitHub, and other platforms.
+Join
+Telegram Group
+as a Hacker or a Developer.
+Previous
+Circles Architecture
+chevron-left
+Next
+Circles SDK Overview
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

@@ -1,0 +1,69 @@
+---
+url: "https://docs.aboutcircles.com/user-guides/circles-features/daily-burn-demurrage"
+title: "Daily Burn (Demurrage) | User Guides | Circles Documentation"
+description: "In Circles-enabled apps, you can spot the “burn’s’ built-in demurrage: a small, automatic reduction of the CRC balance you hold . This is not a fee and is not paid to anyone . The burned CRC simply cease to exist ."
+---
+
+copy
+Copy
+chevron-down
+Daily Burn (Demurrage)
+This guide will help you understand what the “burn” events mean, how they work, and why they exist
+In Circles-enabled apps (for example, the
+Gnosis app
+arrow-up-right
+), you can spot CRC burn events in your Activity feed. These appear regularly and reduce your displayed CRC balance over time.
+hashtag
+What is Daily Burn?
+Daily Burn is Circles’ built-in demurrage: a small, automatic reduction of the CRC balance you hold.
+Roughly ~0.02% of your current balance per day is removed (“burned”).
+Over a year, that adds up to 7% annual demurrage.
+This is not a fee and is not paid to anyone—the burned CRC simply cease to exist.
+hashtag
+Why Circles has Daily Burn?
+Daily Burn is one half of Circles’ monetary design:
+Creation force: each user can create 1 CRC per hour.
+Destruction force: existing CRC depreciate at 7% per year via demurrage.
+circle-info
+The Circles whitepaper explains that these two forces are tuned to support intergenerational fairness so the system stays attractive to new joiners even decades later.
+hashtag
+The “fair access” idea
+Circles aims for a property like:
+People who join later shouldn’t be permanently “too late.”
+Over long time horizons, the gap between early joiners and new joiners shrinks, because early-created money gradually loses weight relative to ongoing creation.
+hashtag
+What does “demurrage” mean?
+“Demurrage” is a monetary concept often associated with the economist
+Silvio Gesell
+, historically discussed as a way to discourage hoarding and encourage circulation (sometimes via “stamp scrip” systems).
+Circles uses demurrage a bit differently: it’s paired with universal, ongoing issuance (everyone creates), which changes the goal from “just circulation” to a blend that supports long-term fairness and accessibility.
+hashtag
+What Daily Burn implies for you?
+Holding CRC long-term has a carrying cost (like a gentle “melting”).
+Spending/using CRC sooner avoids some future burn (because you’re not holding it as long).
+Burn is automatic and time based, you don’t need to claim, approve, or trigger it.
+hashtag
+How the “maximum created” amount works?
+Over a lifetime-scale horizon, demurrage plus 1 CRC/hour issuance creates a saturation effect:
+The
+Circles whitepaper
+notes that accounts approximately reach a maximum level of ~120,804 CRC after creating for about 80 years (life-expectancy scale).
+After creation stops, the remaining nominal amount trends downward with an exponential “half-life” on the order of ~10 years.
+Important nuance: this “maximum” framing is about what you can create in your own name over time, not a hard cap on what you can hold (you can still hold more via transfers).
+hashtag
+FAQ
+hashtag
+Is Daily Burn the same as a transaction fee?
+No. It’s not paid to validators, app developers, or any treasury. It’s a protocol-level removal of value from existing balances.
+hashtag
+Does burn apply to “my CRC” only or all CRC I hold?
+It applies to the CRC balance you hold (regardless of whose CRC they originated from), because it’s defined as depreciation of existing CRC holdings.
+Previous
+Circles Transfer and Rule of Trust
+chevron-left
+Next
+Trust Score
+chevron-right
+Last updated
+28 days ago
+Was this helpful?

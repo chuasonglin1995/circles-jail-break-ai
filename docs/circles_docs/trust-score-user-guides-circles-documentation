@@ -1,0 +1,110 @@
+---
+url: "https://docs.aboutcircles.com/user-guides/circles-features/trust-score"
+title: "Trust Score | User Guides | Circles Documentation"
+description: "Trust Score is"
+---
+
+copy
+Copy
+chevron-down
+Trust Score
+This guide will help you understand what it means, how it’s calculated, and how to use it safely
+hashtag
+What is Trust Score?
+The Trust Score is a number shown on your profile that helps indicate how “established” an account is in the Circles network.
+Use it as a signal when deciding who to trust, especially if you’re unsure and would otherwise “trust back” by default.
+circle-exclamation
+Important: It’s a helper, not a guarantee. Don’t use it as the only criterion.
+hashtag
+Where to find it?
+Open the Gnosis app
+Go to your Profile page
+Look for the Trust Score number (You can also tap it to open the explainer modal, a short in-app explanation)
+hashtag
+What should you use it for?
+hashtag
+1) Safer trust decisions
+The main purpose is to help you decide whether it’s sensible to trust a new or unfamiliar account.
+Low Trust Score → higher caution. It
+may
+be a bad idea to trust them.
+High Trust Score → generally a better signal, but still verify the person.
+hashtag
+2) Unlocking access to offers
+The score is also used to unlock or expand access to certain offers and experiences.
+For example:
+Some marketplace offers may accept only Gnosis Group Circles as payment (not all CRC).
+To convert what you create daily into Gnosis Group Circles, you need to be part of the Gnosis group.
+One possible way to gain entry / eligibility is reaching a high Trust Score threshold (alongside other routes like holding a Gnosis Pay Card or being a “backer,” other criterias.
+hashtag
+How the Trust Score is calculated?
+The Trust Score combines two components:
+hashtag
+A) Risk Score (0–100, where 100 is worst)
+A higher Risk Score means the system considers the account riskier to trust.
+It’s based on many signals like:
+activity patterns
+trust connections
+holdings
+who holds your circles
+minting behavior
+hashtag
+B) Community Score (0–100, where 100 is best)
+A higher Community Score means the network has higher confidence it’s fine to trust you.
+This one is described as having a simpler approach than the Risk Score, and is based heavily on trust connectivity.
+So, the final trust score uses the below formula:
+100
+Trust Score = min( Community Score, 100 − Risk Score )
+core
+min
+core
+100
+core
+hashtag
+Why “minimum”?
+It’s a “safety-first” design:
+If either your Community Score is low or your Risk Score is high, your final Trust Score will be low.
+A high Trust Score requires both:
+low risk (so 100 − Risk Score is high)
+high community confidence (Community Score is high)
+hashtag
+How to improve your Trust Score?
+Because the final score is the
+minimum
+of two values, you want to improve both sides:
+hashtag
+Improve Community Score
+Community score relates to how well-connected you are to backers.
+Circles Backers are accounts that have put up collateral to back their own currency. So they have “skin in the game” and tend to trust more carefully. Being trusted by well-connected / high-score participants helps.
+Practical steps:
+Build genuine relationships in the community (don’t spam trust requests).
+Get trusted by established participants (especially those who are active and reputable).
+Avoid “trust circles” formed purely to inflate scores as these may backfire if flagged as suspicious behavior.
+hashtag
+Keep Risk Score low
+Because the Risk Score model is intentionally not transparent, your best bet is to behave in ways that are broadly “normal and trustworthy”:
+Avoid suspicious patterns (mass trust/untrust waves, bot-like activity, etc.).
+Keep your account behavior consistent and human.
+If you’re new, don’t rush: let trust build organically.
+Use the Trust Score as a starting point, then also:
+confirm identity via a known channel (message them, check community presence)
+look at their activity history (if available)
+avoid trusting accounts you don’t recognize
+just because they “trusted you”
+hashtag
+FAQ
+hashtag
+Is a high Trust Score a guarantee someone is safe?
+No. It’s a helpful signal, not a guarantee.
+hashtag
+Can I “farm” my score quickly?
+The system is designed to resist gaming—especially via the Risk Score. Focus on real relationships and normal participation.
+hashtag
+What does being trusted by high-score people do?
+It can improve your Community Score and may help unlock access/eligibility thresholds.
+Previous
+Daily Burn (Demurrage)
+chevron-left
+Last updated
+19 days ago
+Was this helpful?

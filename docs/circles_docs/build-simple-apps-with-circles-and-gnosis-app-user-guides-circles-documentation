@@ -1,0 +1,70 @@
+---
+url: "https://docs.aboutcircles.com/user-guides/build-simple-apps-with-circles-and-gnosis-app"
+title: "Build simple apps with Circles and Gnosis App | User Guides | Circles Documentation"
+description: " The guide is for community leaders and non-developers who want to build/vibecode a simple app that uses Circles payments through Gnosis App . The concept is simple. Generate gnosis app payment link, have the user execute the transaction using their Gnosis Wallet ."
+---
+
+copy
+Copy
+chevron-down
+Build simple apps with Circles and Gnosis App
+This guide is for community leaders and non-developers who want to build/vibecode a simple app that uses Circles payments through Gnosis App.
+The example is a simple page where people can:
+Enter a payment (recipient + amount + note)
+Open the payment in Gnosis App (or scan QR)
+See payment confirmation in your app
+The concept is simple. Generate gnosis app payment link, have the user execute the transaction using their Gnosis Wallet, try to look for the respective on-chain transaction "data" to change your app state according to your needs.
+circle-check
+This is what we will populate in our apps to trigger a gnosis app transaction:
+https://app.gnosis.io/transfer/<recipient>/crc?data=<anyData>&amount=<amount>
+Under the hood, this starter kit utilises Circles RPC to match the data and confirm when the right payment appears.
+hashtag
+1. Run the starter kit
+GitHub - aboutcircles/circles-gnosisApp-starter-kit: Circles × Gnosis App Starter Kit
+GitHub
+chevron-right
+From the repo folder, run:
+Copy
+```
+npm install
+npm run dev
+```
+Then open: http://localhost:3000
+hashtag
+2. Try one real payment flow
+On the page:
+Recipient address → who should receive CRC
+circle-info
+Create a new Circles Org account for the receiving account. Orgs are best suited for accepting payments from Circles Users. Learn more about Circles Orgs
+here
+arrow-up-right
+Amount (CRC) → how much
+Description → your payment reference (example: membership-payment)
+Then:
+Click Open in Gnosis app (or Show QR)
+In the app, click Start monitoring
+Complete payment in Gnosis App
+Wait for transaction to be confirmed
+Tip: always use a unique description(data) each time (like an order ID or member ID). This is what will be used to identify the payment.
+hashtag
+3. Tailor it to your use (vibe-coding style)
+You can further turn this into:
+Membership check-in
+Event contribution page
+Donation/ticket page
+Any other idea
+hashtag
+4. Link your app from your Org profile
+Create your own Circles Org account in the
+Circles app
+Open Edit profile / description
+Add a short CTA + your app URL
+Share with your community
+Previous
+User Guides
+chevron-left
+Next
+Build a no-code mini-app on Circles using the Gnosis app checkout flow
+Last updated
+18 days ago
+Was this helpful?

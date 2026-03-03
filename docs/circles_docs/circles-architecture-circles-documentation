@@ -1,0 +1,41 @@
+---
+url: "https://docs.aboutcircles.com/overview/circles-architecture"
+title: "Circles Architecture | Circles Documentation"
+description: " The contract manages names, symbols and metadata for avatars (humans, groups, and organizations) The name would be of 12 characters with a base58 encoding and store metadata for avatar profiles . The contract is deployed by Standard treasury and is utilized during redemption of group circles token ."
+---
+
+copy
+Copy
+chevron-down
+folder-tree
+Circles Architecture
+An overview of different components of circles architecture.
+A flow of architecture for Circles Protocol
+hashtag
+Circles V2 Core Components
+Hub V2 Contract
+An ERC-1155 standard contract for registeration of
+human,
+groups and
+organisation avatars.
+Manages trust relations, minting of personal CRC tokens, group currencies and demurrage.
+Migration Contract
+Allows transition from Legacy V1 hub avatars to V2 hub. Migration will lock V1 CRC tokens, stop minting V1 tokens and convert into V2 tokens.
+Name Registry
+NameRegistry contract manages names, symbols and metadata for avatars (humans, groups, and organizations).
+The name would be of 12 characters with a base58 encoding and store metadata for avatar profiles.
+Base Mint Policy
+Base mint policy is standard contract is utilized group registration. Once registered the policy address is immutable for the group address. This is a reference implementation for minting, burning and redeeming the group currencies and developers can build their own custom policies as well.
+Vaults
+Vaults is a factor contract that holds the personal CRC collateral against the group currencies. Every group, there is single vault to query balance. This contract is deployed by Standard treasury and is utilized during redemption of group circles token.
+Standard Treasury
+The Standard Treasury handles minting and redemption of group Circles by managing collateral transfers. It ensures collateral is forwarded to the correct vault based on structured data from the Hub contract. Additionally, it verifies data during redemption to release or burn collateral as specified by the group's mint policy.
+Previous
+Why Build on Circles?
+chevron-left
+Next
+The Circles Stack
+chevron-right
+Last updated
+1 year ago
+Was this helpful?

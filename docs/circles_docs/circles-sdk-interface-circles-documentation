@@ -1,0 +1,416 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk-reference/circles-sdk-interface"
+title: "Circles SDK interface | Circles Documentation"
+description: " The SDK"
+---
+
+copy
+Copy
+chevron-down
+inbox-full
+Circles SDK interface
+hashtag
+Sdk class
+Constructor:
+```
+new Sdk(config?: CirclesConfig, contractRunner?: ContractRunner)
+```
+```
+config
+```
+defaults to
+```
+circlesConfig[100]
+```
+(Gnosis)
+```
+contractRunner
+```
+required for any state-changing call (see ContractRunner below)
+Top-level properties:
+core
+: low-level contract wrappers (
+```
+@aboutcircles/sdk-core
+```
+rpc
+: RPC client (
+```
+@aboutcircles/sdk-rpc
+```
+```
+profilesClient
+```
+: IPFS profile helper
+```
+senderAddress
+```
+: present when a runner is provided
+data
+: read helpers (see CirclesData)
+hashtag
+Sdk methods
+```
+getAvatar(address)
+```
+```
+```
+Registration (
+```
+sdk.register.*
+```
+```
+asHuman(inviter, profile)
+```
+```
+HumanAvatar
+```
+```
+asOrganization(profile)
+```
+```
+OrganisationAvatar
+```
+```
+asGroup(owner, service, feeCollection, initialConditions, name, symbol, profile)
+```
+```
+BaseGroupAvatar
+```
+Profiles (
+```
+sdk.profiles.*
+```
+```
+create(profile)
+```
+cid
+```
+get(cid)
+```
+```
+Profile | undefined
+```
+Tokens (
+```
+sdk.tokens.*
+```
+```
+getInflationaryWrapper(address)
+```
+→ wrapper address or zero
+```
+getDemurragedWrapper(address)
+```
+```
+getHolders(tokenAddress, limit?, sortOrder?)
+```
+```
+PagedQuery<TokenHolderRow>
+```
+Groups (
+```
+sdk.groups.*
+```
+```
+getType(avatar)
+```
+→ group type (currently unsupported)
+```
+getMembers(groupAddress, limit?, sortOrder?)
+```
+```
+PagedQuery<GroupMemberRow>
+```
+```
+getCollateral(groupAddress)
+```
+```
+TokenBalance[]
+```
+(group treasury balances)
+```
+getHolders(groupAddress, limit?)
+```
+```
+PagedQuery<GroupTokenHolderRow>
+```
+hashtag
+CirclesData (
+```
+sdk.data
+```
+Read-only convenience interface:
+```
+```
+```
+AvatarInfo | undefined
+```
+```
+getTrustRelations(address)
+```
+```
+AggregatedTrustRelation[]
+```
+```
+getBalances(address)
+```
+```
+```
+hashtag
+ContractRunner (required for writes)
+Minimal contract runner the SDK expects when sending transactions:
+```
+address
+```
+(sender)
+```
+publicClient
+```
+(viem client for reads)
+```
+init(): Promise<void>
+```
+```
+sendTransaction(txs: TransactionRequest[]): Promise<any>
+```
+Optional:
+```
+estimateGas
+```
+call
+```
+resolveName
+```
+```
+sendBatchTransaction
+```
+hashtag
+Avatar interfaces (shared across Human/Organisation/BaseGroup)
+Obtained via
+```
+sdk.getAvatar(address)
+```
+. All mutate calls require a runner.
+hashtag
+balances
+```
+getTotal()
+```
+→ total CRC
+```
+getTokenBalances()
+```
+```
+TokenBalanceRow[]
+```
+```
+getTotalSupply()
+```
+→ BigInt (not implemented for all types)
+hashtag
+trust
+```
+add(avatar | avatar[], expiry?)
+```
+```
+remove(avatar | avatar[])
+```
+```
+isTrusting(address)
+```
+```
+isTrustedBy(address)
+```
+```
+getAll()
+```
+```
+```
+hashtag
+profile
+get()
+```
+```
+```
+update(profile)
+```
+cid
+```
+updateMetadata(cid)
+```
+→ tx receipt
+```
+registerShortName(nonce)
+```
+hashtag
+history
+```
+getTransactions(limit?, sortOrder?)
+```
+```
+PagedQuery<TransactionRow>
+```
+hashtag
+transfer
+```
+direct(to, amount, tokenAddress?, txData?)
+```
+```
+advanced(to, amount, options?)
+```
+→ tx receipt (pathfinding + unwrap/rewrap)
+```
+getMaxAmount(to)
+```
+```
+getMaxAmountAdvanced(to, options?)
+```
+```
+bigint
+```
+hashtag
+wrap
+```
+asDemurraged(avatarAddress, amount)
+```
+```
+asInflationary(avatarAddress, amount)
+```
+```
+unwrapDemurraged(wrapperAddress, amount)
+```
+```
+unwrapInflationary(wrapperAddress, amount)
+```
+hashtag
+events
+```
+subscribeToEvents()
+```
+→ sets
+```
+avatar.events
+```
+observable
+```
+unsubscribeFromEvents()
+```
+```
+events
+```
+→ observable stream of Circles events
+hashtag
+Human Avatar specifics
+hashtag
+personalToken
+```
+getAvailableAmount()
+```
+→ mintable CRC
+```
+mint()
+```
+```
+stop()
+```
+→ tx receipt (irreversible)
+hashtag
+groupToken (aliases to
+group
+in HumanAvatar)
+```
+mint(group, amount)
+```
+→ pathfound transfer to mint handler
+```
+getMaxMintableAmount(group)
+```
+```
+bigint
+```
+```
+redeem(group, amount)
+```
+→ tx receipt (automatic redemption)
+```
+properties.owner(group)
+```
+```
+properties.mintHandler(group)
+```
+```
+setProperties.owner(group, newOwner)
+```
+```
+setProperties.mintHandler(group, newHandler)
+```
+hashtag
+Organisation Avatar specifics
+Same
+```
+groupToken
+```
+surface as HumanAvatar; lacks personal minting.
+hashtag
+BaseGroup Avatar specifics
+hashtag
+groupToken (group operations)
+```
+```
+```
+```
+```
+```
+```
+```
+```
+```
+```
+```
+```
+```
+hashtag
+base group admin (inherited from CommonAvatar group alias)
+```
+setProperties.memberRequirement(group, newRequirement)
+```
+```
+setProperties.baseName(group, name, symbol)
+```
+hashtag
+Notes
+Provide a
+```
+```
+for any write call; you can use
+```
+SafeBrowserRunner
+```
+```
+SafeContractRunner
+```
+or your own viem-based runner.
+Pathfinding options for transfers mirror
+```
+FindPathParams
+```
+```
+useWrappedBalances
+```
+, token include/exclude lists,
+```
+maxTransfers
+```
+```
+simulatedBalances
+```
+, etc.).
+Previous
+Query Circles profiles
+chevron-left
+Next
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

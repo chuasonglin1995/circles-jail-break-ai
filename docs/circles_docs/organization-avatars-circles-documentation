@@ -1,0 +1,28 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk/circles-avatars/organization-avatars"
+title: "Organization Avatars | Circles Documentation"
+description: "Unlike human or group avatars, organizations don't have membership conditions . Organizations are designed to represent entities that participate in the Circles economy without issuing their own currency ."
+---
+
+copy
+Copy
+chevron-down
+building-ngo
+Organization Avatars
+In the Circles SDK, an
+Organization Avatar
+represents a non-human entity within the ecosystem. Unlike human or group avatars, it has distinct capabilities:
+Cannot mint tokens
+Can participate in the trust network
+Supports profiles
+for organization
+Unlike group avatars, organizations don't have membership conditions. Organizations are designed to represent entities that participate in the Circles economy without issuing their own currency.
+Previous
+Getting total supply of group tokens available
+chevron-left
+Next
+Creation of Organizations
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

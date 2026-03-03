@@ -1,0 +1,61 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk/circles-sdk-overview"
+title: "Circles SDK Overview | Circles Documentation"
+description: "Circles SDK allows you to integrate Circles protocol into your dApp to implement avatars, profiles, token transfers and build trust connections for your use-case . Under the hood, Circles SDK utilizes deployed hub contracts on Gnosis Chain, pathfinder for finding trust network paths and profile service ."
+---
+
+copy
+Copy
+chevron-down
+file-code
+Circles SDK Overview
+The
+Circles SDK
+arrow-up-right
+is a TypeScript library that allows you to integrate Circles protocol into your dApp to implement avatars, profiles, token transfers and build trust connections for your use-case. Under the hood, Circles SDK utilizes deployed hub contracts on Gnosis Chain, pathfinder for finding trust network paths and profile service and Circles RPC.
+hashtag
+Circles SDK :
+To use the Circles sdk, install the primary npm package
+Copy
+```
+npm install @aboutcircles/sdk
+```
+Features:
+Instantiate Sdk once and work with human, organization, or group avatars through a unified interface.
+Fetch total and per-token Circles balances (demurraged and static) for any avatar.
+Add, remove, batch, and audit trust relationships across the network.
+Execute direct or advanced multi-hop transfers with automatic pathfinding and flow-matrix generation.
+Check mintable amounts, mint daily issuance, stop minting, and manage ERC20 wrapper states.
+Store, update, and resolve avatar profiles, metadata digests, and short names via the profile service.
+Register humans, organizations, and groups while handling invitation escrows end-to-end.
+Query trust graphs, avatar info, wrapper addresses, token holders, and group memberships from convenience namespaces.
+Deploy BaseGroups, configure services and membership conditions, and analyze holders or memberships.
+Compute liquidity paths, unwrap/re-wrap flows, and generate operateFlowMatrix payloads programmatically.
+Plug in EOA or Safe runners to batch transactions and execute all avatar writes with consistent error reporting.
+hashtag
+Dependency packages
+Package
+Purpose
+@aboutcircles/sdk-core
+Core contract interactions
+@aboutcircles/sdk-rpc
+RPC client for Circles-specific methods
+@aboutcircles/sdk-profiles
+Profile management
+@aboutcircles/sdk-types
+TypeScript type definitions
+@aboutcircles/sdk-utils
+Utility functions
+@aboutcircles/sdk-runner
+Safe multisig wallet integration for executing blockchain operations with the Circles SDK.
+@aboutcircles/sdk-transfers
+Builds Circles SDK transfer payloads by combining pathfinding results with the data and RPC utilities needed to execute a transfer.
+Previous
+The Circles Stack
+chevron-left
+Next
+Quickstart Guide for Circles SDK
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

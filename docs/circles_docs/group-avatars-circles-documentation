@@ -1,0 +1,49 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk/circles-avatars/group-avatars"
+title: "Group Avatars | Circles Documentation"
+description: "Group Avatars are a type of avatar in the Circles ecosystem that represent collective entities rather than individual users . Groups can mint their own tokens backed by collateral, allowing communities to create currencies tailored to their specific needs . Members can redeem group tokens for the underlying collateral collateral"
+---
+
+copy
+Copy
+chevron-down
+users-medical
+Group Avatars
+Group avatars are a type of avatar in the Circles ecosystem that represent collective entities rather than individual users.
+hashtag
+Group Structure
+Each group in Circles has:
+A unique blockchain address (similar to individual avatars)
+A specific type identifier
+An owner who has administrative control
+A treasury where tokens are stored
+A mint policy that governs token creation
+A name and symbol for its tokens
+A membership system
+Groups also maintain a count of their members and can store metadata via IPFS CIDs (Content Identifiers).
+hashtag
+Groups support following CRC token operations:
+Minting
+: Groups can mint their own tokens using collateral from members
+Redemption
+: Members can redeem group tokens for the underlying collateral
+hashtag
+Understanding purpose of Groups
+Groups within the Circles ecosystem serve several important purposes:
+Enabling Collective Economic Action
+: Groups allow multiple individuals to create shared economic entities with their own currencies, extending Circles beyond personal tokens.
+Creating Community Currencies
+: Groups can mint their own tokens backed by collateral, allowing communities to create currencies tailored to their specific needs.
+Pooling Resources
+: The group treasury system allows pooling of resources from members.
+Collective Governance
+: Groups implement membership systems that can include conditions and expiry times.
+Previous
+Transfer personal Circles tokens to different avatar
+chevron-left
+Next
+Create Base Groups for your community
+chevron-right
+Last updated
+9 months ago
+Was this helpful?

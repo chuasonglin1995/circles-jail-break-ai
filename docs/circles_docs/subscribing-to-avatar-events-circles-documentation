@@ -1,0 +1,145 @@
+---
+url: "https://docs.aboutcircles.com/querying-circles-profiles-and-data/subscribing-to-avatar-events"
+title: "Subscribing to Avatar events | Circles Documentation"
+description: " The Circles SDK let's you subscribe to protocol events . There is also a way to query all past events in a block range . All events have at least the following base properties ."
+---
+
+copy
+Copy
+chevron-down
+diagram-previous
+Subscribing to Avatar events
+The Circles SDK let's you subscribe to protocol events. Either filtered for an avatar or as a complete stream. There is also a way to query all past events in a block range.
+hashtag
+Subscribe
+To subscribe, you need an initialized CirclesData class.
+Gnosis Chain
+Second Tab
+Copy
+```
+const circlesRpc = new CirclesRpc("https://rpc.aboutcircles.com/");
+const data = new CirclesData(circlesRpc);
+```
+Copy
+```
+const circlesRpc = new CirclesRpc("https://static.94.138.251.148.clients.your-server.de/rpc/");
+```
+Then call the
+```
+subscribeToEvents()
+```
+method and supply the address of the avatar to subscribe to:
+Copy
+```
+const avatarEvents = await data.subscribeToEvents("0x...");
+avatarEvents.subscribe(event => {
+console.log(event);
+});
+```
+If you want to subscribe to all events, call it without parameter:
+Copy
+```
+});
+```
+hashtag
+Query past events
+If your client missed some events, you can query all events for a specific avatar in a block range.
+Copy
+```
+const avatarEvents = await data.getEvents("0x..", 9000000, 10000000);
+```
+You can omit the last parameter (
+```
+toBlock
+```
+) to query from
+```
+fromBlock
+```
+to the latest block:
+Copy
+```
+const avatarEvents = await data.getEvents("0x..", 10000000);
+```
+hashtag
+Event types
+The above methods yield
+```
+CirclesEvent
+```
+s. All events have at least the following base properties:
+```
+$event: CirclesEventType
+```
+One of the event types listed below
+```
+blockNumber: number
+```
+In which block the event occurred
+```
+timestamp?: number
+```
+When the event occurred
+```
+transactionIndex: number
+```
+The index of the transaction in the block
+```
+logIndex: number
+```
+The index of the log entry in the transaction
+```
+transactionHash?: string
+```
+The transaction hash
+Here's a list of all event types. Please refer to the
+source code
+arrow-up-right
+for the event properties.
+Copy
+```
+export type CirclesEvent =
+// CrcV1 Events
+| CrcV1_HubTransfer
+| CrcV1_Signup
+| CrcV1_OrganizationSignup
+| CrcV1_Trust
+| CrcV1_Transfer
+// CrcV2 Events
+| CrcV2_InviteHuman
+| CrcV2_PersonalMint
+| CrcV2_RegisterGroup
+| CrcV2_RegisterHuman
+| CrcV2_RegisterOrganization
+| CrcV2_Stopped
+| CrcV2_Trust
+| CrcV2_TransferSingle
+| CrcV2_Erc20WrapperTransfer
+| CrcV2_Erc20WrapperDeployed
+| CrcV2_URI
+| CrcV2_ApprovalForAll
+| CrcV2_TransferBatch
+| CrcV2_RegisterShortName
+| CrcV2_UpdateMetadataDigest
+| CrcV2_CidV0
+| CrcV2_StreamCompleted
+| CrcV2_CreateVault
+| CrcV2_GroupMintSingle
+| CrcV2_GroupMintBatch
+| CrcV2_GroupRedeem
+| CrcV2_GroupRedeemCollateralReturn
+| CrcV2_GroupRedeemCollateralBurn
+| CrcV2_DepositDemurraged
+| CrcV2_DepositInflationary
+| CrcV2_WithdrawDemurraged
+| CrcV2_WithdrawInflationary
+```
+Previous
+Query Circles Data
+chevron-left
+Next
+Utilising CirclesQuery Class
+chevron-right
+Last updated
+1 year ago
+Was this helpful?

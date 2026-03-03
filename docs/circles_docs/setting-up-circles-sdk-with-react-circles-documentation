@@ -1,0 +1,63 @@
+---
+url: "https://docs.aboutcircles.com/tutorials-and-examples/setting-up-circles-sdk-with-react-and-javascript"
+title: "Setting up Circles SDK with React | Circles Documentation"
+description: "Circles SDK with React with React is an example code on how you can set up Circles with a front-end framework like React . The code is a simple example of how to use React with the front end framework ."
+---
+
+copy
+Copy
+chevron-down
+Setting up Circles SDK with React
+Here is an example code on how you can setup Circles SDK with a front-end framework like React.
+Copy
+```
+import React, { createContext, useCallback, useEffect, useState } from 'react';
+import { Sdk } from '@aboutcircles/sdk';
+import { circlesConfig } from '@aboutcircles/sdk-core';
+import { SafeBrowserRunner } from '@aboutcircles/sdk-runner';
+import { createPublicClient, http } from 'viem';
+import { gnosis } from 'viem/chains';
+export const CirclesSDKContext = createContext(null);
+export const CirclesSDKProvider = ({ children, safeAddress }) => {
+const [sdk, setSdk] = useState(null);
+const [runner, setRunner] = useState(null);
+const [address, setAddress] = useState(null);
+const [isConnected, setIsConnected] = useState(false);
+const initSdk = useCallback(async () => {
+try {
+// Read-only SDK without runner
+setSdk(new Sdk(circlesConfig[100]));
+setIsConnected(true);
+return;
+const publicClient = createPublicClient({
+chain: gnosis,
+transport: http(circlesConfig[100].circlesRpcUrl),
+});
+const safeRunner = new SafeBrowserRunner(publicClient, window.ethereum, safeAddress);
+await safeRunner.init();
+setRunner(safeRunner);
+setAddress(safeAddress);
+const sdkInstance = new Sdk(circlesConfig[100], safeRunner);
+setSdk(sdkInstance);
+} catch (err) {
+console.error('Error initializing Circles SDK', err);
+setIsConnected(false);
+}, [safeAddress]);
+useEffect(() => {
+initSdk();
+}, [initSdk]);
+return (
+<CirclesSDKContext.Provider
+value={{ sdk, runner, address, isConnected, initSdk }}
+{children}
+</CirclesSDKContext.Provider>
+```
+Previous
+Pathfinder
+chevron-left
+Next
+Circles x Gnosis App Starter Kit
+chevron-right
+Last updated
+3 months ago
+Was this helpful?

@@ -1,0 +1,350 @@
+---
+url: "https://docs.aboutcircles.com/circles-sdk-reference/sdk-methods"
+title: "SDK Methods | Circles Documentation"
+description: "Avatar"
+---
+
+copy
+Copy
+chevron-down
+user-ninja
+SDK Methods
+hashtag
+1) getAvatar
+Gets an avatar instance by address.
+Copy
+```
+sdk.getAvatar(avatarAddress: string): Promise<Avatar>;
+```
+Parameters:
+```
+avatarAddress
+```
+(required): Avatar wallet address.
+Returns:
+```
+```
+Example:
+Copy
+```
+const avatar = await sdk.getAvatar('0x123...abc');
+```
+hashtag
+2) register.asHuman
+Registers a human avatar; handles invitation redemption automatically.
+Copy
+```
+sdk.register.asHuman(inviter: string, profile: Profile | string): Promise<HumanAvatar>;
+```
+```
+inviter
+```
+(required): Address of inviting avatar.
+```
+profile
+```
+(required): Profile object or CID string.
+Returns:
+```
+HumanAvatar
+```
+Example:
+Copy
+```
+const human = await sdk.register.asHuman('0xInviter', { name: 'Alice', description: 'Dev' });
+```
+hashtag
+3) register.asOrganization
+Registers an organization avatar with profile data.
+Copy
+```
+sdk.register.asOrganization(profile: Profile | string): Promise<OrganisationAvatar>;
+```
+```
+profile
+```
+(required): Profile object or CID string; must include
+name
+Returns:
+```
+OrganisationAvatar
+```
+Example:
+Copy
+```
+const org = await sdk.register.asOrganization({ name: 'Org', description: 'Example org' });
+```
+hashtag
+4) register.asGroup
+Registers a Base Group with profile data.
+Copy
+```
+sdk.register.asGroup(
+owner: string,
+service: string,
+feeCollection: string,
+initialConditions: string[],
+name: string,
+symbol: string,
+profile: Profile | string
+): Promise<BaseGroupAvatar>;
+```
+owner
+```
+service
+```
+```
+feeCollection
+```
+(required): Addresses.
+```
+initialConditions
+```
+(required): Array of condition contract addresses (can be empty).
+name
+(required, ≤19 chars),
+```
+symbol
+```
+(required).
+```
+profile
+```
+(required): Profile object or CID.
+Returns:
+```
+BaseGroupAvatar
+```
+Example:
+Copy
+```
+const group = await sdk.register.asGroup(
+owner,
+service,
+feeCollector,
+[],
+'GroupName',
+'GRP',
+{ name: 'GroupName', description: 'Example group' }
+```
+hashtag
+5) profiles.create (global)
+Pins profile data and returns CID.
+Copy
+```
+sdk.profiles.create(profile: Profile): Promise<string>;
+```
+```
+profile
+```
+(required): Profile object.
+Returns:
+CID string.
+Example:
+Copy
+```
+const cid = await sdk.profiles.create({ name: 'Jane', description: 'Developer' });
+```
+hashtag
+6) avatar.profile.update (avatar-bound)
+Pins profile data and updates on-chain metadata digest for that avatar.
+Copy
+```
+avatar.profile.update(profile: Profile): Promise<string>;
+```
+```
+profile
+```
+Returns:
+Example:
+Copy
+```
+const cid = await avatar.profile.update({ name: 'Jane', description: 'Updated bio' });
+```
+hashtag
+7) tokens.getInflationaryWrapper
+Gets the inflationary ERC20 wrapper address for an avatar’s token (or zero address if undeployed).
+Copy
+```
+sdk.tokens.getInflationaryWrapper(address: string): Promise<string>;
+```
+```
+address
+```
+(required): Avatar address.
+Returns:
+Wrapper address or zero.
+Example:
+Copy
+```
+const inflWrapper = await sdk.tokens.getInflationaryWrapper('0xAvatar...');
+```
+hashtag
+8) tokens.getDemurragedWrapper
+Gets the demurraged ERC20 wrapper address for an avatar’s token (or zero address if undeployed).
+Copy
+```
+sdk.tokens.getDemurragedWrapper(address: string): Promise<string>;
+```
+```
+address
+```
+Returns:
+Example:
+Copy
+```
+const demWrapper = await sdk.tokens.getDemurragedWrapper('0xAvatar...');
+```
+hashtag
+9) Wrapping (avatar.wrap)
+Wrap/unwrap ERC1155 CRC into ERC20 wrappers.
+Wrap demurraged:
+Copy
+```
+avatar.wrap.asDemurraged(avatarAddress: string, amount: bigint): Promise<TransactionReceipt>;
+```
+Wrap inflationary:
+Copy
+```
+avatar.wrap.asInflationary(avatarAddress: string, amount: bigint): Promise<TransactionReceipt>;
+```
+Unwrap demurraged:
+Copy
+```
+avatar.wrap.unwrapDemurraged(wrapperAddress: string, amount: bigint): Promise<TransactionReceipt>;
+```
+Unwrap inflationary:
+Copy
+```
+avatar.wrap.unwrapInflationary(wrapperAddress: string, amount: bigint): Promise<TransactionReceipt>;
+```
+```
+```
+```
+wrapperAddress
+```
+(required)
+```
+amount
+```
+(required, bigint, atto‑CRC)
+Returns:
+Transaction receipt.
+Example:
+Copy
+```
+await avatar.wrap.asInflationary(avatar.address, BigInt(5e18));
+```
+hashtag
+10) Transfers (avatar.transfer)
+Advanced (pathfinding + unwrap/rewrap):
+Copy
+```
+avatar.transfer.advanced(
+to: string,
+amount: bigint,
+options?: AdvancedTransferOptions
+): Promise<TransactionReceipt>;
+```
+Direct (no pathfinding):
+Copy
+```
+avatar.transfer.direct(
+tokenAddress?: string,
+txData?: Uint8Array
+```
+Max flow helpers:
+Copy
+```
+avatar.transfer.getMaxAmount(to: string): Promise<bigint>;
+avatar.transfer.getMaxAmountAdvanced(to: string, options?: PathfindingOptions): Promise<bigint>;
+```
+Key optional
+```
+options
+```
+```
+useWrappedBalances
+```
+```
+fromTokens
+```
+```
+toTokens
+```
+```
+excludeFromTokens
+```
+```
+excludeToTokens
+```
+```
+simulatedBalances
+```
+```
+maxTransfers
+```
+```
+txData
+```
+Example:
+Copy
+```
+const receipt = await avatar.transfer.advanced('0xRecipient', BigInt(10e18), { useWrappedBalances: true });
+```
+hashtag
+11) Trust graph (avatar.trust)
+Copy
+```
+avatar.trust.add(avatarOrList: string | string[], expiry?: bigint): Promise<TransactionReceipt>;
+avatar.trust.remove(avatarOrList: string | string[]): Promise<TransactionReceipt>;
+avatar.trust.isTrusting(address: string): Promise<boolean>;
+avatar.trust.isTrustedBy(address: string): Promise<boolean>;
+avatar.trust.getAll(): Promise<AggregatedTrustRelation[]>;
+```
+expiry
+optional (defaults to max uint96).
+Example:
+Copy
+```
+await avatar.trust.add('0xFriend'); // indefinite
+```
+hashtag
+12) Balances & history
+Copy
+```
+avatar.balances.getTotal(): Promise<bigint>;
+avatar.balances.getTokenBalances(): Promise<TokenBalanceRow[]>;
+avatar.history.getTransactions(limit?: number, sortOrder?: 'ASC' | 'DESC'): PagedQuery<TransactionRow>;
+```
+Example:
+Copy
+```
+const tokens = await avatar.balances.getTokenBalances();
+```
+hashtag
+13) Events
+Copy
+```
+await avatar.subscribeToEvents();
+avatar.events.subscribe((event) => console.log(event.$event, event));
+avatar.unsubscribeFromEvents();
+```
+Returns:
+```
+subscribeToEvents
+```
+resolves when WS subscription is active;
+```
+events
+```
+is an observable stream of Circles events.
+Previous
+Circles SDK interface
+chevron-left
+Next
+Circles Events Types
+chevron-right
+Last updated
+3 months ago
+Was this helpful?
