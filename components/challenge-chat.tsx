@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import Link from "next/link"
+import Image from "next/image"
 import {
   ArrowLeft,
   Send,
@@ -26,6 +27,12 @@ const botIcons: Record<string, typeof Lock> = {
   "sweet-talker": Lock,
   "secret-keeper": Shield,
   "rule-breaker": Brain,
+}
+
+const imageMap: Record<string, string> = {
+  "sweet-talker": "/images/gloria.jpg",
+  "secret-keeper": "/images/agent-x.jpg",
+  "rule-breaker": "/images/oracle.jpg",
 }
 
 const accentMap: Record<string, { bg: string; text: string; border: string; bubble: string }> = {
@@ -247,16 +254,16 @@ export function ChallengeChat({ challenge }: { challenge: Challenge }) {
         </div>
 
         <div className="flex flex-1 flex-col">
-          <h1 className="text-sm font-semibold text-foreground">{challenge.title}</h1>
-          <p className="text-xs text-muted-foreground">{challenge.botName}</p>
+          <h1 className="text-base font-semibold text-foreground">{challenge.title}</h1>
+          <p className="text-sm text-muted-foreground">{challenge.botName}</p>
         </div>
 
         <div className={`hidden items-center gap-2 rounded-lg border px-3 py-1.5 sm:flex ${accent.bg} ${accent.border}`}>
-          <span className={`text-xs font-mono uppercase tracking-wider ${accent.text} opacity-70`}>
+          <span className={`text-sm font-mono uppercase tracking-wider ${accent.text} opacity-70`}>
             Target
           </span>
-          <span className={`font-mono text-xs font-semibold ${accent.text}`}>
-            {'"'}{challenge.targetPhrase}{'"'}
+          <span className={`font-mono text-sm font-semibold ${accent.text}`}>
+            {'"'}{challenge.displayPhrase || challenge.targetPhrase}{'"'}
           </span>
         </div>
 
@@ -279,11 +286,11 @@ export function ChallengeChat({ challenge }: { challenge: Challenge }) {
 
       {/* Mobile target bar */}
       <div className={`flex items-center gap-2 border-b border-border px-4 py-2 sm:hidden ${accent.bg}`}>
-        <span className={`text-xs font-mono uppercase tracking-wider ${accent.text} opacity-70`}>
+        <span className={`text-sm font-mono uppercase tracking-wider ${accent.text} opacity-70`}>
           Target
         </span>
-        <span className={`font-mono text-xs font-semibold ${accent.text}`}>
-          {'"'}{challenge.targetPhrase}{'"'}
+        <span className={`font-mono text-sm font-semibold ${accent.text}`}>
+          {'"'}{challenge.displayPhrase || challenge.targetPhrase}{'"'}
         </span>
       </div>
 
@@ -292,17 +299,22 @@ export function ChallengeChat({ challenge }: { challenge: Challenge }) {
         <div className="mx-auto flex max-w-2xl flex-col gap-4">
           {messages.length === 0 && (
             <div className="flex flex-col items-center gap-4 py-16 text-center">
-              <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${accent.bg}`}>
-                <BotIcon className={`h-8 w-8 ${accent.text}`} />
+              <div className="relative h-24 w-24 overflow-hidden rounded-2xl">
+                <Image
+                  src={imageMap[challenge.id] || "/images/gloria.jpg"}
+                  alt={challenge.botName}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="flex flex-col gap-2">
-                <h2 className="text-lg font-semibold text-foreground">
+                <h2 className="text-xl font-semibold text-foreground">
                   Chat with {challenge.botName}
                 </h2>
-                <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+                <p className="max-w-sm text-base leading-relaxed text-muted-foreground">
                   {challenge.botDescription}. Try to get them to say{" "}
                   <span className={`font-mono font-semibold ${accent.text}`}>
-                    {'"'}{challenge.targetPhrase}{'"'}
+                    {'"'}{challenge.displayPhrase || challenge.targetPhrase}{'"'}
                   </span>
                 </p>
               </div>
@@ -338,7 +350,7 @@ export function ChallengeChat({ challenge }: { challenge: Challenge }) {
                       : `${accent.bubble} text-foreground`
                   } ${containsTarget ? "ring-2 ring-success ring-offset-2 ring-offset-background" : ""}`}
                 >
-                  <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                  <p className="text-base leading-relaxed whitespace-pre-wrap">
                     {text}
                   </p>
                   {containsTarget && (
@@ -373,7 +385,7 @@ export function ChallengeChat({ challenge }: { challenge: Challenge }) {
       {solved && (
         <div className="flex items-center justify-center gap-3 border-t border-success/30 bg-success/10 px-4 py-3">
           <Trophy className="h-5 w-5 text-success" />
-          <span className="text-sm font-semibold text-success">
+          <span className="text-base font-semibold text-success">
             Challenge Complete! You did it in {messageCount} message{messageCount !== 1 ? "s" : ""}.
           </span>
           <Button

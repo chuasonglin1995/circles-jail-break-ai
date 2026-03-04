@@ -6,7 +6,7 @@ import { Lock, Shield, Brain, ArrowRight, Check } from "lucide-react"
 import type { Challenge } from "@/lib/challenges"
 
 const imageMap: Record<string, string> = {
-  "sweet-talker": "/images/gary.jpg",
+  "sweet-talker": "/images/gloria.jpg",
   "secret-keeper": "/images/agent-x.jpg",
   "rule-breaker": "/images/oracle.jpg",
 }
@@ -111,7 +111,7 @@ export function ChallengeCard({
             Target
           </span>
           <span className="font-mono text-sm font-semibold">
-            {'"'}{challenge.targetPhrase}{'"'}
+            {'"'}{challenge.displayPhrase || challenge.targetPhrase}{'"'}
           </span>
         </div>
 
